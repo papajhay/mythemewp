@@ -1,16 +1,25 @@
 <?php get_header() ?> <!--fonction d'insérer la partie en tête -->
 
    <?php if(have_posts()): ?>
-   <ul>
-       <?php while (have_posts()):the_post() ;?><!--the_post():fonction d'afficher l'article -->
-           <a href="<?php the_permalink() ?>"><!--the_permalink():permet de génerer le lien vers un article-->
-             <li><?php the_title()?> <!-- fonction d'afficher d'article -->
-           </a>
-               <?php the_author() ?><!-- fonction d'afficher l'auteur de l'article-->
-             </li>
-       <?php endwhile ?>
-   </ul>
-       <?php else: ?>
+      <div class="row">
+          <?php while (have_posts()):the_post() ;?><!--the_post():permet d'afficher l'article -->
+             <div class="col-sm-4">
+                <div class="card">
+                    <?php the_post_thumbnail('meduim', ['class' =>'card-img-top', 'alt'=>'', 'style'=>'height: auto;'])?><!--the_post_thumbnail():génerer la taille d'image -->
+                    <div class="card-body">
+                         <h5 class="card-title"><?php the_title()?></h5><!--the_title():permet d'afficher le titre -->
+                         <h6 class="card-subtitle mb-2 text-muted"><?php the_category()?></h6>
+                         <p class="card-text">
+                              <?php the_excerpt()?><!--pemet de récuperer un extrait de contenu -->
+                         </p>
+                         <a href="<?php the_permalink() ?>" class="card-link">Voir plus</a><!--the_permalink():permet de générer le lien -->
+                    </div>
+                </div>
+            </div>  
+          <?php endwhile ?>
+      </div>
+
+     <?php else: ?>
       <h1>Pas d'articles</h1> 
     <?php endif; ?>  
 

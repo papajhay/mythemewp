@@ -2,7 +2,8 @@
 //add_theme_support(): fonction permet de rajouter qlq support de fonctionalité
 
 function montheme_supports(){
-      add_theme_support('title-tag');
+      add_theme_support('title-tag');//afficher un titre
+      add_theme_support( 'post-thumbnails' );//afficher une image
 }
 
 function montheme_register_assets(){
