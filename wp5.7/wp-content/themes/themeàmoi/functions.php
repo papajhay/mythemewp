@@ -64,7 +64,7 @@ function montheme_pagination(){
 } 
 
 function montheme_add_custom_box (){
-      add_meta_box('montheme_sponso', 'Sponsoring', 'montheme_render_sponso_box', 'post');
+      add_meta_box('montheme_sponso', 'Sponsoring', 'montheme_render_sponso_box', 'post', 'side');
 }
 
 function montheme_render_sponso_box (){
@@ -75,6 +75,16 @@ function montheme_render_sponso_box (){
      <?php
 }
 
+function montheme_save_sponso ($post_id){
+      if (array_key_exists('montheme_sponso', $_POST)) {
+            if ($_POST["montheme_sponso"] === '0') {
+                  delete_post_meta($post_id, "montheme_sponso");
+            }else {
+                  update_post_meta($post_id, "montheme_sponso", 1);
+            }
+      }
+ }
+
 add_action('after_setup_theme','montheme_supports');
 //wp_enqueue_scripts : fil d'attente de script et de styles censés apparaître sur le front-end 
 add_action('wp_enqueue_scripts', 'montheme_register_assets');
@@ -84,3 +94,4 @@ add_filter('document_title_separator', 'montheme_title_separator');
 add_filter('nav_menu_css_class', 'montheme_menu_class');
 add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
 add_action('add_meta_boxes', 'montheme_add_custom_box');
+add_action('save_post', 'montheme_save_sponso');
