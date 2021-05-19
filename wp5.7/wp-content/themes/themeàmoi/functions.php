@@ -61,7 +61,19 @@ function montheme_pagination(){
       echo '</ul>';
       echo '</nav>';
 
-}  
+} 
+
+function montheme_add_custom_box (){
+      add_meta_box('montheme_sponso', 'Sponsoring', 'montheme_render_sponso_box', 'post');
+}
+
+function montheme_render_sponso_box (){
+     ?>
+     <input type="hidden" value="0" name="montheme_sponso">
+     <input type="checkbox" value="1" name="montheme_sponso">
+     <label for="monthemesponso">Cet article est sponsorisé</label>
+     <?php
+}
 
 add_action('after_setup_theme','montheme_supports');
 //wp_enqueue_scripts : fil d'attente de script et de styles censés apparaître sur le front-end 
@@ -71,3 +83,4 @@ add_filter('document_title_separator', 'montheme_title_separator');
 //add_filter('document_title_parts', 'montheme_title_document_parts');
 add_filter('nav_menu_css_class', 'montheme_menu_class');
 add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
+add_action('add_meta_boxes', 'montheme_add_custom_box');
