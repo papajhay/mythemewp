@@ -76,7 +76,7 @@ function montheme_render_sponso_box (){
 }
 
 function montheme_save_sponso ($post_id){
-      if (array_key_exists('montheme_sponso', $_POST)) {
+      if (array_key_exists('montheme_sponso', $_POST) && current_user_can('edit_post', $post_id)) {
             if ($_POST["montheme_sponso"] === '0') {
                   delete_post_meta($post_id, "montheme_sponso");
             }else {
