@@ -1,4 +1,9 @@
 <?php get_header() ?> <!--fonction d'insérer la partie en tête -->
+<h1><?= esc_html(get_queried_object()->name)  ?></h1>
+
+<p>
+     <?= esc_html(get_queried_object()->description) ?> 
+</p>
  <!-- get_terms()=>Récupère les termes de la taxonomie qui sont attachés à la publication.-->
 <?php $sports = get_terms(['taxonomy' => 'sport']); ?>
 <ul class="nav nav-pills my-4">
@@ -14,7 +19,7 @@
 
    <?php if(have_posts()): ?>
       <div class="row">
-          <?php while (have_posts()):the_post(); ?><!--the_post():permet d'afficher l'article -->
+          <?php while (have_posts()):the_post() ;?><!--the_post():permet d'afficher l'article -->
              
              <div class="col-sm-4">
                  <!--get_template_part():permet d'inclure d'un autre élément -->

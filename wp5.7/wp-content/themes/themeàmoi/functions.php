@@ -81,6 +81,16 @@ function montheme_init() {
           'hierarchical'      => true,
           'show_admin_column' => true,
       ]);
+
+      //enregistrement custom post type 
+      register_post_type('bien', [
+            'label' => 'Bien',//affichage dans l'admin
+            'public'=> true ,
+            'menu_position'=> 3,//emplacement sur le tableau de bord
+            'menu_icon' => 'dashicons-building',//l'icon qui affiche sur l'admin (ex: bien) 
+            'supports'=> ['title', 'editor', 'thumbnail'],//affichage de titre , editeur, et l'image mis en avant qd on modifie
+            'show_in_rest' => true,//qd on modifie un article on a une forme de bloc
+      ]);
 }
 
 add_action('init', 'montheme_init');
@@ -94,5 +104,8 @@ add_filter('nav_menu_css_class', 'montheme_menu_class');
 add_filter('nav_menu_link_attributes', 'montheme_menu_link_class');
 
 require_once('metaboxes/sponso.php');
+require_once('options/agence.php');
+
 SponsoMetaBox::register();
+AgenceMenuPage::register();
 
